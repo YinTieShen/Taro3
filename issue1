@@ -1,0 +1,43 @@
+import React, { Component } from 'react'
+import { View } from '@tarojs/components'
+import './index.scss'
+
+export default class Index extends Component {
+  state = {
+    show: false
+  };
+
+  handleTest = () => {
+    console.log('触发了打开组件click');
+  }
+  handleDebug = (flag = true) => {
+    this.setState({ show: flag });
+  };
+  render() {
+    const { show } = this.state;
+    return (
+      <View className='index'>
+        <View className="debug">
+          {show ? (
+            <View className="debug-list" >
+                <View onClick={this.handleDebug.bind(this, false)}>
+                  关闭
+                </View>
+                <View >
+                  功能1
+                </View>
+                <View >
+                  功能2
+                </View>
+            </View>
+          ) : (
+              <View onClick={this.handleTest.bind(this)}>
+                <View className="debug-entry" onClick={this.handleDebug.bind(this, true)}>
+                  打开
+                </View>
+              </View>)}
+        </View>
+      </View>
+    )
+  }
+}
